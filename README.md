@@ -11,7 +11,6 @@
 
 </div>
 
-# AdaptiveDenosingMusic
 
 <img width="890" height="1096" alt="Adaptive Musical Denoising" src="https://github.com/user-attachments/assets/c2857138-a845-4fe5-87b8-99eac426c283" />
 
