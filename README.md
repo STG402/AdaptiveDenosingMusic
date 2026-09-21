@@ -1,4 +1,3 @@
-
 <div align="center">
 
 # Adaptive Musical Denoising
@@ -11,10 +10,9 @@
 
 </div>
 
-
 <img width="890" height="1096" alt="Adaptive Musical Denoising" src="https://github.com/user-attachments/assets/c2857138-a845-4fe5-87b8-99eac426c283" />
 
-**Full paper:** [paper.pdf](https://github.com/user-attachments/files/29191559/paper.pdf)
+**Full paper:** [paper.pdf](./paper.pdf)
 
 ---
 
@@ -24,7 +22,7 @@
 
 Traditional speech denoisers may mistakenly suppress musical instruments or background music. This project investigates several ways to make DeepFilterNet more music-aware.
 
-The repository includes three experimental approaches:
+The repository includes the two main architectures evaluated in the paper, together with an additional experimental Student–Teacher approach:
 
 1. **Hybrid Controller** — YAMNet + XGBoost dynamically adjusts DeepFilterNet attenuation.
 2. **Fine-Tuned DeepFilterNet** — retrains DeepFilterNet using mixed speech, music, and noise data.
@@ -34,7 +32,7 @@ The repository includes three experimental approaches:
 
 ## Architecture
 
-```text id="6w5jpy"
+```text
                 Adaptive Musical Denoising
                          │
           ┌──────────────┼──────────────┐
@@ -48,11 +46,11 @@ The repository includes three experimental approaches:
 
 ---
 
-## Main Approach
+## Fine-Tuned DeepFilterNet
 
 The main goal is to train the denoiser to learn:
 
-```text id="n98ia1"
+```text
 Environmental Noise → Suppress
 Speech              → Preserve
 Music               → Preserve
@@ -60,7 +58,7 @@ Music               → Preserve
 
 The fine-tuned DeepFilterNet pipeline uses paired speech data together with synthetic music + noise mixtures.
 
-```text id="esx4wq"
+```text
 Speech / Music / Noise
           │
           ▼
@@ -80,7 +78,7 @@ DeepFilterNet Features
 
 ## Repository Structure
 
-```text id="a7dkr8"
+```text
 AdaptiveDenosingMusic/
 │
 ├── generate_hybrid_dataset.py
@@ -103,7 +101,7 @@ AdaptiveDenosingMusic/
 
 For the Hybrid, Benchmark, and Student–Teacher pipelines:
 
-```text id="h4g5uo"
+```text
 data/
 ├── speech/
 ├── music/
@@ -112,7 +110,7 @@ data/
 
 For DeepFilterNet retraining:
 
-```text id="5qae9w"
+```text
 data/
 ├── music_dataset/
 ├── noise_extra/
@@ -125,20 +123,20 @@ data/
 
 ## Installation
 
-```bash id="r21t9m"
+```bash
 git clone https://github.com/STG402/AdaptiveDenosingMusic.git
 cd AdaptiveDenosingMusic
 ```
 
 Create a virtual environment:
 
-```bash id="953u6r"
+```bash
 python -m venv .venv
 ```
 
 Install the main dependencies:
 
-```bash id="cl1ef6"
+```bash
 pip install torch torchaudio
 pip install numpy scipy soundfile
 pip install tensorflow tensorflow-hub
@@ -150,7 +148,7 @@ pip install matplotlib seaborn
 
 Optional:
 
-```bash id="xd96iu"
+```bash
 pip install pesq
 ```
 
@@ -162,13 +160,13 @@ pip install pesq
 
 Generate controller training data:
 
-```bash id="fzt7y2"
+```bash
 python generate_hybrid_dataset.py
 ```
 
 Train the XGBoost controller:
 
-```bash id="tyi8iw"
+```bash
 python train_hybrid_controller.py
 ```
 
@@ -178,19 +176,19 @@ python train_hybrid_controller.py
 
 Prepare the training data:
 
-```bash id="1y00a7"
+```bash
 python prepare_dfn_dataset.py
 ```
 
 Train the model:
 
-```bash id="7f9yko"
+```bash
 python train_deepfilternet.py
 ```
 
 The training pipeline expects a compatible:
 
-```text id="58f3gm"
+```text
 new_config.ini
 ```
 
@@ -202,13 +200,13 @@ file in the repository root.
 
 Generate training pairs:
 
-```bash id="ru55u0"
+```bash
 python generate_student_teacher_dataset.py
 ```
 
 Train the lightweight model:
 
-```bash id="tgzxtu"
+```bash
 python train_student_teacher_model.py
 ```
 
@@ -218,26 +216,26 @@ python train_student_teacher_model.py
 
 Generate the benchmark dataset:
 
-```bash id="86mgvx"
+```bash
 python generate_benchmark_dataset.py
 ```
 
 The benchmark contains alternating speech and music regions mixed with environmental noise.
 
-```text id="6mvnid"
+```text
 | Speech | Music | Speech | Music |
 |----------- Environmental Noise -----------|
 ```
 
 After processing the noisy files with the model being tested, save the enhanced audio under:
 
-```text id="172i2d"
+```text
 data/output_clean/
 ```
 
 Then run:
 
-```bash id="xq158o"
+```bash
 python evaluate_metrics.py
 ```
 
@@ -252,7 +250,7 @@ The evaluator reports:
 
 Results are saved under:
 
-```text id="sd0shd"
+```text
 generated_test_metrics/
 ```
 
@@ -270,17 +268,17 @@ Representative results reported in the project include:
 | Fine-Tuned DeepFilterNet | Speech + Music FAD ≈ 1.28 |
 | Fine-Tuned DeepFilterNet | SI-SDR ≈ 15.78 dB         |
 
-For the complete methodology and analysis, see the **[full paper](https://github.com/user-attachments/files/29191559/paper.pdf)**.
+For the complete methodology and analysis, see the **[full paper](./paper.pdf)**.
 
 ---
 
 ## Current Limitations
 
-* datasets are not included;
-* dependency versions are not yet pinned;
-* `new_config.ini` is required for DeepFilterNet training;
-* there is currently no unified inference script;
-* the Student–Teacher model remains experimental.
+* Datasets are not included.
+* Dependency versions are not yet pinned.
+* `new_config.ini` is required for DeepFilterNet training.
+* There is currently no unified inference script.
+* The Student–Teacher model remains experimental.
 
 ---
 
@@ -288,12 +286,12 @@ For the complete methodology and analysis, see the **[full paper](https://github
 
 Planned improvements include:
 
-* unified inference pipeline;
-* standardized dataset structure;
-* pinned dependencies;
-* released checkpoints;
-* real-time latency benchmarking;
-* more music genres and noise environments;
+* Unified inference pipeline.
+* Standardized dataset structure.
+* Pinned dependencies.
+* Released checkpoints.
+* Real-time latency benchmarking.
+* More music genres and noise environments.
 * ONNX / streaming inference support.
 
 ---
