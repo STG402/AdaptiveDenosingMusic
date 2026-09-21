@@ -1,5 +1,11 @@
 # AdaptiveDenosingMusic
 
+**A Comparative Evaluation of Hybrid and Fine-Tuned DeepFilterNet Architectures**
+
+[![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)]()
+[![PyTorch](https://img.shields.io/badge/PyTorch-Optimized-orange.svg)]()
+[![DeepFilterNet](https://img.shields.io/badge/DeepFilterNet-Real--Time-success.svg)]()
+
 <img width="890" height="1096" alt="Adaptive Musical Denoising" src="https://github.com/user-attachments/assets/c2857138-a845-4fe5-87b8-99eac426c283" />
 
 **Full paper:** [paper.pdf](https://github.com/user-attachments/files/29191559/paper.pdf)
@@ -8,11 +14,7 @@
 
 # Adaptive Musical Denoising
 
-**A Comparative Evaluation of Hybrid and Fine-Tuned DeepFilterNet Architectures**
 
-[![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)]()
-[![PyTorch](https://img.shields.io/badge/PyTorch-Optimized-orange.svg)]()
-[![DeepFilterNet](https://img.shields.io/badge/DeepFilterNet-Real--Time-success.svg)]()
 
 </div>
 
