@@ -1,8 +1,3 @@
-# AdaptiveDenosingMusic
-
-<img width="890" height="1096" alt="Adaptive Musical Denoising" src="https://github.com/user-attachments/assets/c2857138-a845-4fe5-87b8-99eac426c283" />
-
-**Full paper:** [paper.pdf](https://github.com/user-attachments/files/29191559/paper.pdf)
 
 <div align="center">
 
@@ -15,6 +10,12 @@
 [![DeepFilterNet](https://img.shields.io/badge/DeepFilterNet-Real--Time-success.svg)]()
 
 </div>
+
+# AdaptiveDenosingMusic
+
+<img width="890" height="1096" alt="Adaptive Musical Denoising" src="https://github.com/user-attachments/assets/c2857138-a845-4fe5-87b8-99eac426c283" />
+
+**Full paper:** [paper.pdf](https://github.com/user-attachments/files/29191559/paper.pdf)
 
 ---
 
